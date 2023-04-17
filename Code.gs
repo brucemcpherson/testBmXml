@@ -107,72 +107,94 @@ const makeGml = () => {
 }
 
 const makeHtml = () => {
-  /**
-   * copy this from the Gml example
-   * @namespace Html
-   * wrapper for Html
-   */
-  const Html = (() => {
 
-    /**
-     * @return {XmlWrapper}and instance of xmlwrapper
-     */
-    const getRenderer = () => {
-      return new Exports.XmlWrapper({
-        root: {
-          tag: "html",
-        }
-      })
-    }
-
-    /**
-     * this is the parent item for a complete gml rendering
-     * @param {XmlItem[]} children the content
-     * @param {number} [indent=2] number of spaces to indent each children content by
-     * @return {string} the rendered string
-     */
-    const render = ({ children, indent } = {}) => {
-      return getRenderer().render({ children, indent })
-    }
-
-    return {
-      render,
-      getRenderer
-    }
-  })()
+  const { Html } = Exports
 
   const head = {
     tag: "head",
     children: [{
+      tag: "link",
+      attrs: {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/icon?family=Material+Icons"
+      }
+    }, {
+      tag: "link",
+      attrs: {
+        type: "text/css",
+        rel: "stylesheet",
+        href: "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+      }
+    }, {
+      tag: "meta",
+      attrs: {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1.0"
+      }
+    }, {
       tag: "script",
       attrs: {
-        src: "https://apis.google.com/js/api.js",
+        src: "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js",
       }
     }, {
       tag: "title",
-      children: ["the title"]
+      children: ["Materialize web app from JSON"]
     }]
   }
+
   console.log(Html.render({ children: [head] }))
+
+
+  const button = {
+    tag: "a",
+    attrs: {
+      class: "btn-floating btn-large waves-effect waves-light purple"
+    },
+    children: [{
+      tag: "i",
+      attrs: {
+        class: "material-icons"
+      },
+      children: ["code"]
+    }]
+  }
+
+  const content = [{
+    tag: "span",
+    attrs: {
+      class: "amber-text"
+    },
+    children: ["Write great", button, "with Google Apps Script"]
+  }]
+
+  const panel = {
+    tag: "div",
+    attrs: {
+      class: "card-panel indigo"
+    },
+    children: content
+  }
+
 
   const body = {
     tag: "body",
-    children: [{
-      tag: "div",
-      attrs: {
-        class: "big"
-      },
-      children: ["some big text"]
-    }]
+    children: [panel]
   }
+  console.log(Html.render({ children: [head, body] }))
+
+
 
   const tableData = [{
-    foo: "bar",
-    value: 3
+    "type": "User Properties",
+    "usage": "persistent data specific to a user"
   }, {
-    foo: "bar2",
-    value: 4
+    "type": "Script Properties",
+    "usage": "persistent data for all users of a script"
+  }, {
+    "type": "Document Properties",
+    "usage": "persistent data for all users of a document"
   }]
+
   // extract all the uniquw props
   const headers = Array.from(tableData.reduce((p, c) => {
     Reflect.ownKeys(c).forEach(k => p.add(k))
@@ -181,13 +203,13 @@ const makeHtml = () => {
 
   const thead = {
     tag: "thead",
-    children: tableData.map(row => ({
-      tag: "tr",
-      children: headers.map(header => ({
-        tag: "td",
-        children: [row[header]]
+    children: [{
+      tag: 'tr',
+      children:  headers.map(header => ({
+        tag: "th",
+        children: [header]
       }))
-    }))
+    }]
   }
 
   const tbody = {
@@ -203,6 +225,9 @@ const makeHtml = () => {
 
   const table = {
     tag: "table",
+    attrs: {
+      class: "amber"
+    },
     children: [thead, tbody]
   }
 
@@ -211,7 +236,7 @@ const makeHtml = () => {
   console.log(Html.render({ children: [head, body] }))
 
   // add a row with unicode/special chars
-  tbody.children.push ({
+  tbody.children.push({
     tag: 'tr',
     children: [{
       tag: 'td',
@@ -222,7 +247,7 @@ const makeHtml = () => {
     }]
   })
   table.children = [thead, tbody]
-  
+
   console.log(Html.render({ children: [head, body] }))
 }
 
