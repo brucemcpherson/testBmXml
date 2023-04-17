@@ -1,5 +1,5 @@
 # Google Apps Script Project: testBmXml
-This repo (testBmXml) was automatically updated on 4/16/2023, 4:58:02?PM by GasGit
+This repo (testBmXml) was automatically updated on 4/17/2023, 1:38:15?PM by GasGit
 
 For more information on gasgit, see the [desktop liberation site](https://ramblings.mcpher.com/drive-sdk-and-github/migrategasgit/ "desktop liberation")
 
@@ -21,11 +21,11 @@ Exports| server_js
 ### Directly referenced libraries
 *library*|*identifier*|*key*|*version*|*dev mode*|*source*|
 --- | --- | --- | --- | --- | --- 
-bmXml| bmXml|1WlC-eOf-d3krlXxVSjn0XSp2tUrRhD2cqf7eqyJzO8l7mNGH2O082yX5|3|no|[here](libraries/bmXml "library source")
+bmXml| bmXml|1WlC-eOf-d3krlXxVSjn0XSp2tUrRhD2cqf7eqyJzO8l7mNGH2O082yX5|0|no|[here](libraries/bmXml "library source")
 ### All dependencies and sub dependencies
 *library*|*identifier*|*key*|*version*|*dev mode*|*source*|
 --- | --- | --- | --- | --- | --- 
-bmXml| bmXml|1WlC-eOf-d3krlXxVSjn0XSp2tUrRhD2cqf7eqyJzO8l7mNGH2O082yX5|3|no|[here](libraries/bmXml "library source")
+bmXml| bmXml|1WlC-eOf-d3krlXxVSjn0XSp2tUrRhD2cqf7eqyJzO8l7mNGH2O082yX5|0|no|[here](libraries/bmXml "library source")
 bmUtils| bmUtils|1BSHC_YfPl6qs6HBvTteKIMyrL-FiuyEpKNGjS_szDb2PXEYUebddkgVR|2|no|no
 ### Enabled Google Services
 no libraries discovered
