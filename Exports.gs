@@ -6,20 +6,19 @@ var Exports = {
   },
 
   /**
-   * @class bmXml.XmlWrapper
-   * @return {XmlWrapper} 
-   */
-  newXmlWrapper(...args) {
-    return this.libExports.newXmlWrapper(...args)
-  },
-
-
-  /**
    * Gml Extension namespace example
    * @return {Proxy} 
    */
   get Gml() {
     return this.libExports.Gml
+  },
+
+  /**
+   * Html Extension namespace example
+   * @return {Proxy} 
+   */
+  get Html() {
+    return this.libExports.Html
   }
  
 }
