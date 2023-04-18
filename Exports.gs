@@ -19,6 +19,14 @@ var Exports = {
    */
   get Html() {
     return this.libExports.Html
+  },
+
+  /**
+   * @implements bmPreFiddler.fiddler
+   * @return {Fiddler}
+   */
+  newFiddler(...args) {
+    return bmPreFiddler.PreFiddler().getFiddler (...args)
   }
  
 }
