@@ -1,3 +1,4 @@
+
 const makeGml = () => {
 
   const g = Exports.Gml
@@ -84,7 +85,7 @@ const makeGml = () => {
       attrs: {
         key: "V-Shape"
       },
-      children: ["Sphere"]
+      children: "Sphere"
     }].map(data => ({ ...data, tag: "data" }))
   }))
   graph.children = betterNodes.concat(edges)
@@ -205,7 +206,7 @@ const makeHtml = () => {
     tag: "thead",
     children: [{
       tag: 'tr',
-      children:  headers.map(header => ({
+      children: headers.map(header => ({
         tag: "th",
         children: [header]
       }))
@@ -236,18 +237,51 @@ const makeHtml = () => {
   console.log(Html.render({ children: [head, body] }))
 
   // add a row with unicode/special chars
-  tbody.children.push({
+  tbody.children = [{
     tag: 'tr',
     children: [{
       tag: 'td',
-      children: ['????????']
+      children: ['< lt ; semi ; > gt']
     }, {
       tag: 'td',
-      children: ['< lt ; semi ; > gt']
+      children: ['????????']
     }]
-  })
+  }]
   table.children = [thead, tbody]
 
+  console.log(Html.render({ children: [head, body] }))
+
+  console.log(
+    Html.setRoot({ ...Html.root, attrs: { language: "jp" } })
+      .render({ children: [head, body] })
+  )
+
+  // get an example sheet
+  const fiddler = Exports.newFiddler({
+    id: "1Sf2fjjsX7tgDg68sV3hYaYdUHE4WOLUjMUQIt-3p10I",
+    sheetName: "Sheet1"
+  })
+
+  // patch in the headers from the sheet
+  thead.children = [{
+    tag: "tr",
+    children: fiddler.getHeaders().map(header => ({
+      tag: "th",
+      children: header
+    }))
+  }]
+
+  // patch in the first 10 rows of data from the sheet 
+  tbody.children = fiddler.getData().slice(0,10).map(row => ({
+    tag: "tr",
+    children: fiddler.getHeaders().map(header => ({
+      tag: "td",
+      children: row[header]
+    }))
+  }))
+
+  // make the new table
+  table.children = [thead, tbody]
   console.log(Html.render({ children: [head, body] }))
 }
 
