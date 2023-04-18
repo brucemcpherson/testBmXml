@@ -7,8 +7,13 @@
       {
         "userSymbol": "bmXml",
         "libraryId": "1WlC-eOf-d3krlXxVSjn0XSp2tUrRhD2cqf7eqyJzO8l7mNGH2O082yX5",
-        "version": "0",
-        "developmentMode": true
+        "version": "6",
+        "developmentMode": false
+      },
+      {
+        "userSymbol": "bmPreFiddler",
+        "libraryId": "13JUFGY18RHfjjuKmIRRfvmGlCYrEkEtN6uUm-iLUcxOUFRJD-WBX-tkR",
+        "version": "33"
       }
     ]
   }
